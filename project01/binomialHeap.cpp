@@ -1,5 +1,5 @@
 // The code are not fully done yet...
-// this is referred to another program, still need to work on it
+
 
 #include <iostream>
 #include <cstdlib>
@@ -191,61 +191,7 @@ int BinomialHeap::Display(node* H)
     cout<<endl;
 }
 
-
-node* BinomialHeap::Extract_Min(node* H1)
-{
-    Hr = NULL;
-    node* t = NULL;
-    node* x = H1;
-    if (x == NULL)
-    {
-        cout<<"Nothing to Extract"<<endl;
-        return x;
-    }
-    int min = x->n;
-    node* p = x;
-    while (p->sibling != NULL)
-    {
-        if ((p->sibling)->n < min)
-        {
-            min = (p->sibling)->n;
-            t = p;
-            x = p->sibling;
-        }
-        p = p->sibling;
-    }
-    if (t == NULL && x->sibling == NULL)
-        H1 = NULL;
-    else if (t == NULL)
-        H1 = x->sibling;
-    else if (t->sibling == NULL)
-        t = NULL;
-    else
-        t->sibling = x->sibling;
-    if (x->child != NULL)
-    {
-        Revert_list(x->child);
-        (x->child)->sibling = NULL;
-    }
-    H = Union(H1, Hr);
-    return x;
-}
-/*
- * Reverse List
- */
-int BinomialHeap::Revert_list(node* y)
-{
-    if (y->sibling != NULL)
-    {
-        Revert_list(y->sibling);
-        (y->sibling)->sibling = y;
-    }
-    else
-    {
-        Hr = y;
-    }
-}
- 
+// look at this again... 
 
 node* BinomialHeap::Search(node* H, int k)
 {
