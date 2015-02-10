@@ -1,6 +1,8 @@
 
 #include <iostream>
 #include <cstdlib>
+#include <fstream>
+#include <string>
 using namespace std;
 
 /*
@@ -193,7 +195,6 @@ int BinomialHeap::Display(node* H)
         if (p->sibling != NULL)
             cout<<"-->";
         p = p->sibling;
-        cout << "\ncurrent: " << *p << endl;
     }
 
     cout << endl;
@@ -315,7 +316,7 @@ int BinomialHeap::Delete(node* H, int k)
     node* np;
     if (H == NULL)
     {
-        cout<<"\nHEAP EMPTY!!!!!";
+        cout<<"\nHEAP EMPTY.";
         return 0;
     }
     Decrease_key(H, k, -1000);
@@ -336,25 +337,59 @@ int main()
     char ch;
     while (1)
     {
-        cout<<"----------------------------"<<endl;
-        cout<<"Operations on Binomial heap"<<endl;
-        cout<<"----------------------------"<<endl;
-        cout<<"1)Insert Element in the heap"<<endl;
-        cout<<"2)Extract Minimum key node"<<endl;
-        cout<<"3)Decrease key of a node"<<endl;
-        cout<<"4)Delete a node"<<endl;
-        cout<<"5)Display Heap"<<endl;
-        cout<<"6)Exit"<<endl;
-        cout<<"Enter Your Choice: ";
-        cin>>l;
+        cout<<"     +++ Binomial heap +++ "<<endl;
+        cout << "1. Read From File" << endl;
+        cout << "2. Find Minimum key node" << endl;
+        cout << "3. Decrease key of a node"<< endl;
+        cout << "4. Delete a node" << endl;
+        cout << "5. Display Heap" << endl;
+        cout << "6. Exit" << endl;
+        cout << "Enter Your Choice: ";
+        cin >> l;
         switch(l)
         {
         case 1:
-            cout<<"Enter the element to be inserted: ";
-            cin>>m;
-            p = bh.Create_node(m);
-            H = bh.Insert(H, p);
+        {
+        /*
+            int main () 
+            {
+              string line;
+              ifstream myfile ("data.txt");
+              if (myfile.is_open())
+              {
+                while ( getline (myfile,line) )
+                {
+                  int num = atoi(line.c_str());
+                  cout << num << '\n';
+                }
+                myfile.close();
+              }
+
+              else cout << "Unable to open file\n"; 
+
+              return 0;
+            }
+        */
+            string line;
+            ifstream FIN;
+            string fileName = "data.txt";
+            FIN.open(fileName.c_str());
+            if(FIN.is_open())
+            {
+                while(getline(FIN,line))
+                {
+                    int num = atoi(line.c_str());
+                    p = bh.Create_node(num);
+                    H = bh.Insert(H, p);
+                }
+                FIN.close();
+            }
+            else
+            {
+                cout << "Error opening file.\n";
+            }
             break;
+        }
         case 2:
             p = bh.Extract_Min(H);
             if (p != NULL)
@@ -379,7 +414,7 @@ int main()
             bh.Display(H);
             break;
         case 6:
-            exit(1);
+            exit(-1);
         default:
             cout<<"Wrong Choice";
 	  }
