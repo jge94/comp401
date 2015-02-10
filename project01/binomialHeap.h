@@ -17,6 +17,7 @@ class BinomialHeap
         node *H;
         node *Hr;
         int count;
+
     public:
         node* Initializeheap();
         int Binomial_link(node*, node*);

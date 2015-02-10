@@ -4,6 +4,7 @@
 
 using namespace std;
 
+
 int main()
 {
     int n, m, l, i;
@@ -12,19 +13,21 @@ int main()
     node *H;
     H = bh.Initializeheap();
     char ch;
+
     while (1)
     {
-        cout<<"----------------------------"<<endl;
-        cout<<"Operations on Binomial heap"<<endl;
-        cout<<"----------------------------"<<endl;
-        cout<<"1)Insert Element in the heap"<<endl;
-        cout<<"2)Extract Minimum key node"<<endl;
-        cout<<"3)Decrease key of a node"<<endl;
-        cout<<"4)Delete a node"<<endl;
-        cout<<"5)Display Heap"<<endl;
-        cout<<"6)Exit"<<endl;
-        cout<<"Enter Your Choice: ";
-        cin>>l;
+        cout << "=============================" << endl;
+        cout << "Operations on Binomial heap" << endl;
+        cout << "=============================" << endl;
+        cout << "1. Insert Element in the heap"<< endl;
+        cout << "2. Extract Minimum key node" << endl;
+        cout << "3. Decrease key of a node" << endl;
+        cout << "4. Delete a node" << endl;
+        cout << "5. Display Heap" << endl;
+        cout << "6. Exit" << endl;
+        cout << "Enter Your Choice: ";
+        cin >> l;
+
         switch(l)
         {
         case 1:
@@ -57,10 +60,12 @@ int main()
             bh.Display(H);
             break;
         case 6:
-            exit(1);
+            cout << "Done. Exit. " << endl;
+            exit(-1);
         default:
             cout<<"Wrong Choice";
 	  }
     }
+
     return 0;
 }

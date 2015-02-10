@@ -1,13 +1,50 @@
 
 #include <iostream>
 #include <cstdlib>
-#include "binomialHeap.h"
-
 using namespace std;
 
 /*
- * Initialize Heap
+ * Node Declaration
  */
+struct node
+{
+    int n;
+    int degree;
+    node* parent;
+    node* child;
+    node* sibling;
+};
+
+
+class BinomialHeap
+{
+    private:
+        node *H;
+        node *Hr;
+        int count;
+    public:
+        node* Initializeheap();
+        int Binomial_link(node*, node*);
+        node* Create_node(int);
+        node* Union(node*, node*);
+        node* Insert(node*, node*);
+        node* Merge(node*, node*);
+        node* Extract_Min(node*);
+        int Revert_list(node*);
+        int Display(node*);
+        node* Search(node*, int);
+        int Decrease_key(node*, int, int);
+        int Delete(node*, int);
+        BinomialHeap()
+        {
+            H = Initializeheap();
+            Hr = Initializeheap();
+            int count = 1;
+        }
+};
+ 
+/* Initialize Heap */
+
 node* BinomialHeap::Initializeheap()
 {
     node* np;
@@ -15,9 +52,7 @@ node* BinomialHeap::Initializeheap()
     return np;
 }
 
-/*
- * Linking nodes in Binomial Heap
- */
+/* Linking nodes in Binomial Heap*/
 
 int BinomialHeap::Binomial_link(node* y, node* z)
 {
@@ -27,9 +62,7 @@ int BinomialHeap::Binomial_link(node* y, node* z)
     z->degree = z->degree + 1;
 }
 
-/*
- * Create Nodes in Binomial Heap
- */
+/* Create Nodes in Binomial Heap */
 
 node* BinomialHeap::Create_node(int k)
 {
@@ -38,10 +71,7 @@ node* BinomialHeap::Create_node(int k)
     return p;
 }
 
-/*
- * Insert Nodes in Binomial Heap
- */
-
+/* Insert Nodes in Binomial Heap */
 node* BinomialHeap::Insert(node* H, node* x)
 {
     node* H1 = Initializeheap();
@@ -54,9 +84,7 @@ node* BinomialHeap::Insert(node* H, node* x)
     return H;
 }
  
-/*
- * Union Nodes in Binomial Heap
- */
+/* Union Nodes in Binomial Heap */
 node* BinomialHeap::Union(node* H1, node* H2)
 {
     node *H = Initializeheap();
@@ -99,10 +127,7 @@ node* BinomialHeap::Union(node* H1, node* H2)
     return H;
 }
 
-/*
- * Merge Nodes in Binomial Heap
- */
-
+/* Merge Nodes in Binomial Heap */
 node* BinomialHeap::Merge(node* H1, node* H2)
 {
     node* H = Initializeheap();
@@ -151,7 +176,6 @@ node* BinomialHeap::Merge(node* H1, node* H2)
 /*
  * Display Binomial Heap
  */
-
 int BinomialHeap::Display(node* H)
 {
     if (H == NULL)
@@ -159,26 +183,25 @@ int BinomialHeap::Display(node* H)
         cout<<"The Heap is empty"<<endl;
         return 0;
     }
-
     cout<<"The root nodes are: "<<endl;
     node* p;
     p = H;
 
     while (p != NULL)
     {
-        cout<<p->n;
+        cout << p->n;
         if (p->sibling != NULL)
             cout<<"-->";
         p = p->sibling;
+        cout << "\ncurrent: " << *p << endl;
     }
 
-    cout<<endl;
+    cout << endl;
 }
 
 /*
  * Extract Minimum
  */
-
 node* BinomialHeap::Extract_Min(node* H1)
 {
     Hr = NULL;
@@ -217,11 +240,9 @@ node* BinomialHeap::Extract_Min(node* H1)
     H = Union(H1, Hr);
     return x;
 }
-
 /*
  * Reverse List
  */
-
 int BinomialHeap::Revert_list(node* y)
 {
     if (y->sibling != NULL)
@@ -238,7 +259,6 @@ int BinomialHeap::Revert_list(node* y)
 /*
  * Search Nodes in Binomial Heap
  */
-
 node* BinomialHeap::Search(node* H, int k)
 {
     node* x = H;
@@ -254,11 +274,9 @@ node* BinomialHeap::Search(node* H, int k)
         p = Search(x->sibling, k);
     return p;
 }
-
 /*
  * Decrease key of a node
  */
-
 int BinomialHeap::Decrease_key(node* H, int i, int k)
 {
     int temp;
@@ -289,11 +307,9 @@ int BinomialHeap::Decrease_key(node* H, int i, int k)
     }
     cout<<"Key reduced successfully"<<endl;
 }
-
 /*
  * Delete Nodes in Binomial Heap
  */
-
 int BinomialHeap::Delete(node* H, int k)
 {
     node* np;
@@ -306,4 +322,67 @@ int BinomialHeap::Delete(node* H, int k)
     np = Extract_Min(H);
     if (np != NULL)
         cout<<"Node Deleted Successfully"<<endl;
+}
+/*
+ * Main Contains Menu
+ */
+int main()
+{
+    int n, m, l, i;
+    BinomialHeap bh;
+    node* p;
+    node *H;
+    H = bh.Initializeheap();
+    char ch;
+    while (1)
+    {
+        cout<<"----------------------------"<<endl;
+        cout<<"Operations on Binomial heap"<<endl;
+        cout<<"----------------------------"<<endl;
+        cout<<"1)Insert Element in the heap"<<endl;
+        cout<<"2)Extract Minimum key node"<<endl;
+        cout<<"3)Decrease key of a node"<<endl;
+        cout<<"4)Delete a node"<<endl;
+        cout<<"5)Display Heap"<<endl;
+        cout<<"6)Exit"<<endl;
+        cout<<"Enter Your Choice: ";
+        cin>>l;
+        switch(l)
+        {
+        case 1:
+            cout<<"Enter the element to be inserted: ";
+            cin>>m;
+            p = bh.Create_node(m);
+            H = bh.Insert(H, p);
+            break;
+        case 2:
+            p = bh.Extract_Min(H);
+            if (p != NULL)
+                cout<<"The node with minimum key: "<<p->n<<endl;
+            else
+                cout<<"Heap is empty"<<endl;
+            break;
+        case 3:
+            cout<<"Enter the key to be decreased: ";
+            cin>>m;
+            cout<<"Enter new key value: ";
+            cin>>l;
+            bh.Decrease_key(H, m, l);
+            break;
+        case 4:
+            cout<<"Enter the key to be deleted: ";
+            cin>>m;
+            bh.Delete(H, m);
+            break;
+        case 5:
+            cout<<"The Heap is: "<<endl;
+            bh.Display(H);
+            break;
+        case 6:
+            exit(1);
+        default:
+            cout<<"Wrong Choice";
+	  }
+    }
+    return 0;
 }
