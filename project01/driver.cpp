@@ -43,7 +43,6 @@ class BinomialHeap
         }
 };
  
-/* Initialize Heap */
 
 node* BinomialHeap::Initializeheap()
 {
@@ -52,7 +51,6 @@ node* BinomialHeap::Initializeheap()
     return np;
 }
 
-/* Linking nodes in Binomial Heap*/
 
 int BinomialHeap::Binomial_link(node* y, node* z)
 {
@@ -71,7 +69,7 @@ node* BinomialHeap::Create_node(int k)
     return p;
 }
 
-/* Insert Nodes in Binomial Heap */
+
 node* BinomialHeap::Insert(node* H, node* x)
 {
     node* H1 = Initializeheap();
@@ -84,7 +82,7 @@ node* BinomialHeap::Insert(node* H, node* x)
     return H;
 }
  
-/* Union Nodes in Binomial Heap */
+
 node* BinomialHeap::Union(node* H1, node* H2)
 {
     node *H = Initializeheap();
@@ -127,7 +125,6 @@ node* BinomialHeap::Union(node* H1, node* H2)
     return H;
 }
 
-/* Merge Nodes in Binomial Heap */
 node* BinomialHeap::Merge(node* H1, node* H2)
 {
     node* H = Initializeheap();
@@ -173,9 +170,7 @@ node* BinomialHeap::Merge(node* H1, node* H2)
     return H;
 }
 
-/*
- * Display Binomial Heap
- */
+
 int BinomialHeap::Display(node* H)
 {
     if (H == NULL)
@@ -198,9 +193,7 @@ int BinomialHeap::Display(node* H)
     cout << endl;
 }
 
-/*
- * Extract Minimum
- */
+
 node* BinomialHeap::Extract_Min(node* H1)
 {
     Hr = NULL;
@@ -239,9 +232,8 @@ node* BinomialHeap::Extract_Min(node* H1)
     H = Union(H1, Hr);
     return x;
 }
-/*
- * Reverse List
- */
+
+
 int BinomialHeap::Revert_list(node* y)
 {
     if (y->sibling != NULL)
@@ -255,9 +247,7 @@ int BinomialHeap::Revert_list(node* y)
     }
 }
  
-/*
- * Search Nodes in Binomial Heap
- */
+
 node* BinomialHeap::Search(node* H, int k)
 {
     node* x = H;
@@ -282,19 +272,23 @@ int BinomialHeap::Decrease_key(node* H, int i, int k)
     node* y;
     node* z;
     p = Search(H, i);
+
     if (p == NULL)
     {
         cout<<"Invalid choice of key"<<endl;
         return 0;
     }
+
     if (k > p->n)
     {
         cout<<"Error!! New key is greater than current key"<<endl;
         return 0;
     }
+
     p->n = k;
     y = p;
     z = p->parent;
+
     while (z != NULL && y->n < z->n)
     {
         temp = y->n;
@@ -303,21 +297,23 @@ int BinomialHeap::Decrease_key(node* H, int i, int k)
         y = z;
         z = z->parent;
     }
+
     cout<<"Key reduced successfully"<<endl;
 }
 
 
 int BinomialHeap::Delete(node* H, int k)
 {
-    node* np;
     if (H == NULL)
     {
         cout<<"\nHEAP EMPTY.";
         return 0;
     }
     Decrease_key(H, k, -1000);
-    np = Extract_Min(H);
-    if (np != NULL)
+
+    node* number;
+    number = Extract_Min(H);
+    if (number != NULL)
         cout<<"Node Deleted Successfully"<<endl;
 }
 
@@ -330,13 +326,14 @@ int main()
     node* p;
     node *H;
     H = bh.Initializeheap();
+
     char ch;
-    while (1)
+    while (true)
     {
         cout<<"     +++ Binomial heap +++ "<<endl;
         cout << "a. Read From File" << endl;
         cout << "b. Find Minimum key node" << endl;
-        cout << "c. Decrease key of a node"<< endl;
+        cout << "c. Delete a node"<< endl;
         cout << "d. Display Heap" << endl;
         cout << "e. Exit" << endl;
         cout << "Enter Your Choice: ";
@@ -373,11 +370,9 @@ int main()
                 cout<<"Heap is empty"<<endl;
             break;
         case 'c':
-            cout<<"Enter the key to be decreased: ";
-            cin>>m;
-            cout<<"Enter new key value: ";
-            cin>>l;
-            bh.Decrease_key(H, m, l);
+            cout << "Enter the key to be deleted: ";
+            cin >> m;
+            bh.Delete(H, m);
             break;
         case 'd':
             cout<<"The Heap is: "<<endl;
