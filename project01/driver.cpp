@@ -298,7 +298,7 @@ int BinomialHeap::Decrease_key(node* H, int i, int k)
         z = z->parent;
     }
 
-    cout<<"Key reduced successfully"<<endl;
+    cout << "Key reduced successfully" << endl;
 }
 
 
@@ -365,9 +365,9 @@ int main()
         case 'b':
             p = bh.Extract_Min(H);
             if (p != NULL)
-                cout<<"The node with minimum key: "<<p->n<<endl;
+                cout << "The node with minimum key: " << p->n << endl;
             else
-                cout<<"Heap is empty"<<endl;
+                cout << "Heap is empty" << endl;
             break;
         case 'c':
             cout << "Enter the key to be deleted: ";
@@ -375,7 +375,7 @@ int main()
             bh.Delete(H, m);
             break;
         case 'd':
-            cout<<"The Heap is: "<<endl;
+            cout<<"The Heap is: " << endl;
             bh.Display(H);
             break;
         case 'e':
