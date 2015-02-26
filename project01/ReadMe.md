@@ -18,13 +18,13 @@ Because of its unique structure, a binomial tree of order k can be constructed f
 Functionality
 -------------------
 1. Read From a File
-	In the program, the "data.txt" file
+* In the program, the "data.txt" file
 2. Find Minimum key node
-	Find the node that has minimal value, for integers
+* Find the node that has minimal value, for integers
 3. Delete a node
-	Enter the node value, then delete it
+* Enter the node value, then delete it
 4. Display Heap
-	only displays the head nodes
+* Only displays the head nodes
 
 
 Complexity Analysis
