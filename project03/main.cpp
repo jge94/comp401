@@ -1,7 +1,6 @@
 #include<iostream>
 #include<stdio.h>
 using namespace std;
-#include<conio.h>
 #define INFINITY 999
 
 struct node
@@ -128,6 +127,5 @@ int main()
         addEdge(am, i, j, cost);
         c++;
     }
-    bell(am);
-    getch();
+    
 }
