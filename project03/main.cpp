@@ -5,11 +5,14 @@ using namespace std;
 
 int main()
 {
-    City Beijing("Beijing");
-    City LA("LA");
-    Edge Beijing_to_LA(Beijing, LA, 300);
-    cout << Beijing_to_LA.distance() << endl;
-    cout << (Beijing_to_LA.from)->name() << endl;
-    cout << (Beijing_to_LA.to)->name() << endl;
+    // // ------- TEST ------
+    // City Beijing("Beijing");
+    // City LA("LA");
+    // Edge Beijing_to_LA(Beijing, LA, 300);
+    // cout << Beijing_to_LA.distance() << endl;
+    // cout << (Beijing_to_LA.from)->name() << endl;
+    // cout << (Beijing_to_LA.to)->name() << endl;
+
+    
     return 0;
 }
